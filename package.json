@@ -1,0 +1,18 @@
+{
+  "name": "testing-js-apps",
+  "version": "1.0.0",
+  "description": "Learning Testing Javascript Applications",
+  "main": "Cart.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "verbose": true,
+    "transform": {}
+  },
+  "author": "Brian Njuguna",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
