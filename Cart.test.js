@@ -1,16 +1,25 @@
-const Cart = require("./Cart.js");
+const { db, closeConnection } = require("./dbConnection");
+const { createCart, addItem } = require("./Cart.js");
 
-test("The addToCart function can add an item to the cart", () => {
-  const cart = new Cart();
-  cart.addToCart("cheesecake");
+beforeEach(async () => {
+  await db("carts").truncate();
+  await db("cart_items").truncate();
+});
+afterAll(async () => await closeConnection());
 
-  expect(cart.items).toEqual(["cheesecake"]);
+test("createCart creates a cart for a username", async () => {
+  await createCart("test");
+  const results = await db.select("username").from("carts");
+
+  expect(results).toEqual([{ username: "test" }]);
 });
 
-test("The removeFromCart function can remove an item from the cart", () => {
-  const cart = new Cart();
-  cart.addToCart("cheesecake");
-  cart.removeFromCart("cheesecake");
+test("addItems add item to a cart", async () => {
+  const username = "test";
+  await createCart(username);
+  const { id: CartId } = await db.select().from("carts").where({ username });
+  await addItem(CartId, "cheesecake");
+  results = await db.select("ItemName").from("cart_items");
 
-  expect(cart.items).toEqual([]);
+  expect(results).toEqual([{ CartId, itemName: "cheesecake" }]);
 });
