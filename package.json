@@ -6,10 +6,7 @@
   "scripts": {
     "test": "jest"
   },
-  "jest": {
-    "verbose": true,
-    "transform": {}
-  },
+
   "author": "Brian Njuguna",
   "license": "ISC",
   "devDependencies": {
