@@ -1,6 +1,7 @@
+require("jest-extended");
 module.exports = {
   testEnvironment: "node",
-  // setupFilesAfterEnv: ["jest-extended"],
+  setupFilesAfterEnv: ["./testSetup.js"],
   verbose: true,
   transform: {},
   // globalSetup: "./globalSetup.js",
